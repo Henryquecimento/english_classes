@@ -1,0 +1,63 @@
+:root {
+    --base-color: #41B0C9;
+    --prime-color: #7159c1;
+    --white-color: #e3e7ee;
+}
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: 65.5%;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(450.35deg, var(--base-color) 0%, #05aad0 100%);
+    font-family: 'Nunito', sans-serif;
+}
+
+header {
+    min-width: 100%;
+    background-color: var(--white-color);
+    padding: 3.2rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.links a {
+    font-size: 2rem;
+    line-height: 2.6rem;
+    color: #777;
+    text-decoration: none;
+    position: relative;
+}
+
+.links a + a {
+    margin-left: 2rem;
+}
+
+.links a.active {
+    font-weight: bold;
+    color: var(--prime-color)
+}
+
+.links a:hover {
+    color: var(--prime-color);
+}
+
+.links a::after {
+    content: "";
+    width: 0;
+    height: 0.2rem;
+    background-color: var(--prime-color);
+    position: absolute;
+    left: 0;
+    bottom: -0.4rem;
+}
+
+.links a:hover::after {
+    width: 100%;
+    transition: width 300ms ease-in-out;
+}
+
