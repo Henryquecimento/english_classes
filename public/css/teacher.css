@@ -38,7 +38,7 @@
 
 .details .item {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: .8rem 0;
+    padding: .9rem 0;
 }
 
 .details .item:last-child {
@@ -57,7 +57,7 @@
 .details .item div:nth-child(2) {
     color: #555;
     font-weight: bold;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 }
 
 .details h3 {
@@ -65,13 +65,13 @@
     color: var(--prime-color);
     font-weight: 800;
     font-size: 1.4rem;
-    line-height: 2.6rem;
+    line-height: 2rem;
 }
 
 .details .item span {
-    padding: 0.4rem 0.8rem;
+    padding: 0.2rem 0.8rem;
     background-color: yellow;
-    border-radius: 16px;
+    border-radius: 1.6rem;
     color: #777;
     margin-right: 0.2rem;
     margin-top: 0.4rem;
@@ -81,3 +81,39 @@
     font-size: 1.2rem;
 }
 
+/* Form */
+
+input {
+    width: 100%;
+    outline: none;
+    background: none;
+    color: #555;
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+input[type='radio']{
+    width: initial;
+    margin: 0.4rem;
+}
+
+input::placeholder {
+    font-size: 1.6rem;
+    font-weight: normal;
+}
+
+button[type="submit"] {
+    padding: 0.8rem 1.6rem;
+    background-color: var(--base-color);
+    color: white;
+    border-radius: 0.4rem;
+    margin-top: 2.2rem;
+    width: 100%;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #59cfe9;
+    transition: background-color 300ms;
+}
