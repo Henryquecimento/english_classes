@@ -8,15 +8,28 @@
 
 .card {
     max-width: 80rem;
-    min-height: 40rem;
+    min-height: 40rem; 
     background: var(--white-color);
-    
     margin: 4.5rem auto;
     display: grid;
     grid-template-columns: 1fr 1fr;  
-    
     animation: right 350ms ease;
 }
+
+/* ---- MOBILE VERSION -----*/
+@media screen and (max-width:425px) {
+    .card {
+        grid-template-columns: none;
+        max-width: calc(100vw - 1rem);
+        min-height: 26.25rem;
+    }
+    .avatar {
+        background: none;
+        display: none;
+    }
+    
+}
+
 
 /* --Animations-- */
 
@@ -47,7 +60,7 @@
 
 .details h3,
 .details .item div:nth-child(1) {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     line-height: 2rem;
     color: #777;
     letter-spacing: 0.07rem;
@@ -57,7 +70,7 @@
 .details .item div:nth-child(2) {
     color: #555;
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
 }
 
 .details h3 {
@@ -121,10 +134,21 @@ a.button:hover {
     transition: background-color 300ms;
 }
 
-/*Show */
+/* Edit */
 a.button {
     display: block;
     box-sizing: border-box;
     text-align: center;
     text-decoration: none;
+}
+
+/* Delete Button */
+#form-delete button[type='submit'] {
+    background-color: lightcoral;
+    margin-top: 1.5rem;
+}
+
+#form-delete button[type='submit']:hover {
+    background-color: rgb(247, 145, 145);
+    transition: background-color 300ms;
 }

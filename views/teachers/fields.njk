@@ -1,0 +1,75 @@
+<div class="item">
+    <div>Avatar URL</div>
+    <div>
+        <input 
+            type = "url"
+            name = "avatar_url"
+            value='{{ teacher.avatar_url }}'>
+    </div>
+</div>
+
+<div class="item">
+    <div>Name</div>
+    <div>
+        <input 
+            type = "text"
+            name = "name"
+            value='{{ teacher.name }}'>
+    </div>
+</div>
+
+<div class="item">
+    <div>Birth</div>
+    <div>
+        <input 
+            type = "date"
+            name = "birth"
+            value='{{teacher.birth}}'>
+    </div>
+</div>
+
+<div class="item">
+    <div>Education level</div>
+    <div>
+        <select name = "education_level">
+            <option value="Graduation">Graduation</option>
+            <option value="Masters">Masters</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Phd">Phd</option>
+        </select>
+    </div>
+</div>
+
+<div class="item">
+    <div>Class modality</div>
+    <div>
+        <span>
+            <input
+            type = "radio" 
+            name = "class_modality"
+            value = 'P' {% if teacher.class_modality == 'P' %} 
+            {% endif %} checked>Presential
+        </span>
+
+        <span>
+            <input 
+            type="radio" 
+            name = "class_modality" 
+            value = 'R' {% if teacher.class_modality == 'R' %}]
+            {% endif %}>Remote
+            </span>
+    </div>
+</div>
+
+<div class="item">
+    <div>Subjects</div>
+    <div>
+        <input 
+            type = "text"
+            name = "subjects"
+            value = '{{ teacher.subjects }}'>
+    </div>
+</div>
+
+<button type="submit">Save</button>
+
