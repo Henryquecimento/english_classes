@@ -8,8 +8,8 @@
     margin: 0;
     border: 0;
     padding: 0;
-    font-size: 65.5%;
-    box-sizing: border-box;
+   /*  font-size: 65.5%;
+    box-sizing: border-box; */
 }
 
 body {
@@ -20,14 +20,22 @@ body {
 header {
     min-width: 100%;
     background-color: var(--white-color);
-    padding: 3.2rem;
+    padding: 1.8rem;
     text-align: center;
     box-sizing: border-box;
 }
 
+/* ---- MOBILE VERSION -----*/
+@media screen and (max-width:425px) {
+    .links a {
+        font-size: 0.5rem;
+        line-height: 1rem;
+    }
+}
+
 .links a {
-    font-size: 2rem;
-    line-height: 2.6rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
     color: #777;
     text-decoration: none;
     position: relative;

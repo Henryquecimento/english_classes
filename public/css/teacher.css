@@ -7,10 +7,10 @@
 /* --Card-- */
 
 .card {
-    max-width: 80rem;
-    min-height: 40rem; 
+    max-width: 50rem;
+    min-height: 25rem; 
     background: var(--white-color);
-    margin: 4.5rem auto;
+    margin: 2.813rem auto;
     display: grid;
     grid-template-columns: 1fr 1fr;  
     animation: right 350ms ease;
@@ -20,7 +20,7 @@
 @media screen and (max-width:425px) {
     .card {
         grid-template-columns: none;
-        max-width: calc(100vw - 1rem);
+        width: calc(100vw - 0.8rem);
         min-height: 26.25rem;
     }
     .avatar {
@@ -152,3 +152,86 @@ a.button {
     background-color: rgb(247, 145, 145);
     transition: background-color 300ms;
 }
+
+ /* Index - Teacher */
+ .table-container {
+     display: block;
+     padding: 2rem;
+     box-sizing: border-box;
+ }
+
+ /* ---- MOBILE VERSION -----*/
+@media screen and (max-width:425px) {
+    .table-container {
+        display: block;
+        padding: 2rem 0 0 0.5rem;
+    }    
+    td, th {
+        padding: 0.5rem;
+        border-bottom: 0.063rem solid #d9d9d9;
+    }
+}
+
+ .table-container table {
+   border-spacing: 0;
+ }
+
+ .table-container table thead tr th {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.1rem;
+    color: #777;
+ }
+
+ td, th {
+     padding: 0.5rem;
+     border-bottom: 0.063rem solid #d9d9d9;
+ }
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr td:first-child {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    align-items: center;
+    color: #555;
+}
+
+tbody tr td:first-child span {
+    width: 3rem;
+    height: 3rem;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 0.188rem 0.063rem 0.375rem -0.25rem black;
+    border: 0.125rem solid var(--base-color);
+}
+
+tbody tr td:nth-child(2) span {
+    padding: 0.1rem 0.4rem;
+    background-color: yellow;
+    border-radius: 0.8rem;
+    color: #777;
+    margin-right: 0.2rem;
+    margin-top: 0.4rem;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+}
+
+tbody tr td:last-child a {
+    text-decoration: none;
+    background-color: var(--base-color);
+    color: white;
+    letter-spacing: 0.1rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+}
+
+.table-container table thead tr th:last-child,
+.td:last-child {
+    text-align: center;
+} 

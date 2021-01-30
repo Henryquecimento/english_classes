@@ -2,21 +2,21 @@
   "teachers": [
     {
       "id": "1",
-      "avatar_url": "https://source.unsplash.com/collection/332741/500x500",
+      "avatar_url": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Y29sbGVnZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60",
       "name": "Henryque Rodrigues Lima",
       "birth": 925171200000,
-      "education_level": "Doctor",
-      "class_modality": "R",
+      "education_level": "Graduation",
+      "class_modality": "P",
       "subjects": "Business Adminstration, Elixir, Javascript",
       "created_at": 1611264893600
     },
     {
       "id": "2",
-      "avatar_url": "https://www.youtube.com/watch?v=D7SH4DmZ0PI&list=PLJASh3gCRKY8h4b6PH2vSNua_X8rKwZ0K&index=2",
+      "avatar_url": "https://images.unsplash.com/photo-1503676382389-4809596d5290?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8Y29sbGVnZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60",
       "name": "Felype Rodrigues Lima",
       "birth": 875491200000,
-      "education_level": "Phd",
-      "class_modality": "R",
+      "education_level": "Graduation",
+      "class_modality": "P",
       "subjects": "Game development, Music for Games",
       "created_at": 1611265502043
     }
