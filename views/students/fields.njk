@@ -1,0 +1,69 @@
+<div class="item">
+    <div>Avatar URL</div>
+    <div>
+        <input 
+            type = "url"
+            name = "avatar_url"
+            placeholder = "https//"
+            value='{{ student.avatar_url }}'>
+    </div>
+</div>
+
+<div class="item">
+    <div>Name</div>
+    <div>
+        <input 
+            type = "text"
+            name = "name"
+            value='{{ student.name }}'>
+    </div>
+</div>
+
+<div class="item">
+    <div>E-mail</div>
+    <div>
+        <input 
+            type = "email"
+            name = "email"
+            value='{{ student.email }}'>
+    </div>
+</div>
+
+<div class="item">
+    <div>Birth</div>
+    <div>
+        <input 
+            type = "date"
+            name = "birth"
+            value='{{student.birth}}'>
+    </div>
+</div>
+
+<div class="item">
+    <div>Class</div>
+    <div>
+        <select name = "education_level">
+            <option value="5EF" {% if student.education_level == "5EF" %} selected {% endif %} >5º Fundametal Grade</option>
+            <option value="6EF" {% if student.education_level == "6EF" %} selected {% endif %} >6º Fundamental Grade</option>
+            <option value="7EF" {% if student.education_level == "7EF" %} selected {% endif %} >7º Fundamental Grade</option>
+            <option value="8EF" {% if student.education_level == "8EF" %} selected {% endif %} >8º Fundamental Grade</option>
+            <option value="9EF" {% if student.education_level == "9EF" %} selected {% endif %} >9º Fundamental Grade</option>
+            <option value="1EM" {% if student.education_level == "1EM" %} selected {% endif %} >1º Medium Grade</option>
+            <option value="2EM" {% if student.education_level == "2EM" %} selected {% endif %} >2º Medium Grade</option>
+            <option value="3EM" {% if student.education_level == "3EM" %} selected {% endif %} >3º Medium Grade</option>
+        </select>
+    </div>
+</div>
+
+<div class="item">
+    <div>Workload</div>
+    <div>
+        <input 
+            type = "number"
+            name = "workload"
+            value='{{ student.workload }}'>
+    </div>
+</div>
+
+<button type="submit">Save</button>
+

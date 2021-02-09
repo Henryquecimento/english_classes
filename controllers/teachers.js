@@ -1,37 +1,19 @@
 const fs = require('fs');
-const data = require('./data.json');
+const data = require('../data.json');
 const Intl = require('intl');
-const { age, date } = require('./utils.js');
+const { age, date } = require('../utils.js');
 
 // index - Teacher
 exports.index = (req, res) => {
-    return res.render('./teachers/teacher', {teachers : data.teachers});
-}
-
-// show
-exports.show = (req, res) => {
-    const { id } = req.params;
-
-    const foundTeacher = data.teachers.find((teacher) => {
-        return teacher.id == id;
-    });
-
-    if(!foundTeacher) {
-        return res.send("Teacher not found!");
-    };
-
-    const teacher = {
-        ...foundTeacher,
-        birth: age(foundTeacher.birth),
-        subjects: foundTeacher.subjects.split(","),
-        created_at: new Intl.DateTimeFormat('pt-BR').format(foundTeacher.created_at)
-    }
-
-    return res.render("teachers/show", { teacher });
-
+    return res.render('teachers/teacher', {teachers : data.teachers});
 }
 
 // create
+exports.create = (req, res) => {
+    return res.render('teachers/create');
+}
+
+// put - create
 exports.post = (req, res) => {
     const keys = Object.keys(req.body);
 
@@ -65,6 +47,29 @@ exports.post = (req, res) => {
     })
 }
 
+// show
+exports.show = (req, res) => {
+    const { id } = req.params;
+
+    const foundTeacher = data.teachers.find((teacher) => {
+        return teacher.id == id;
+    });
+
+    if(!foundTeacher) {
+        return res.send("Teacher not found!");
+    };
+
+    const teacher = {
+        ...foundTeacher,
+        birth: age(foundTeacher.birth),
+        subjects: foundTeacher.subjects.split(","),
+        created_at: new Intl.DateTimeFormat('pt-BR').format(foundTeacher.created_at)
+    }
+
+    return res.render("teachers/show", { teacher });
+
+}
+
 // edit
 exports.edit = (req, res) => {
     const { id } = req.params;
@@ -79,7 +84,7 @@ exports.edit = (req, res) => {
 
     const teacher = {
         ...foundTeacher,
-        birth: date(foundTeacher.birth)
+        birth: date(foundTeacher.birth).iso
     }
 
     return res.render("teachers/edit", { teacher });

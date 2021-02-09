@@ -15,7 +15,6 @@ module.exports = {
         return age;
 
     },
-
     date: (timestamp) => {
         const date = new Date(timestamp);
         
@@ -28,7 +27,19 @@ module.exports = {
         //dd
         const day = `0${date.getUTCDate()}`.slice(-2);
 
-        return `${year}-${month}-${day}`;
+        return {
+            year,
+            month,
+            day,
+            iso: `${year}-${month}-${day}`,
+            birthDay: `${day}/${month}`
+        }
+    },
+    grade: (education) => {        
+       if (education.slice(-2) == "EF") {
+           return education.replace("EF", "º Fundamental Grade");
+       } else {
+           return education.replace("EM", "º Medium Grade");
+       }
     }
-    
 }

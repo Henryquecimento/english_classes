@@ -198,7 +198,6 @@ tbody tr td:first-child {
     display: grid;
     grid-template-columns: 4rem 1fr;
     align-items: center;
-    color: #555;
 }
 
 tbody tr td:first-child span {
@@ -231,6 +230,7 @@ tbody tr td:last-child a,
     letter-spacing: 0.1rem;
     padding: 0.5rem;
     border-radius: 0.4rem;
+    margin-left: 0.4rem;
 }
 
 tbody tr td:last-child a:hover,
@@ -241,6 +241,7 @@ tbody tr td:last-child a:hover,
 
 .table-container a.newButton {
     margin-left: 1.5rem;
+    margin-top: 1rem;
 }
 
 .table-container table thead tr th:last-child,

@@ -1,9 +1,39 @@
 {% extends "layout.njk" %}
 
 {% block head %}
-            <title>Start X - English Student</title>
+    <title>Start X - English Student</title>
+    <link rel='stylesheet' href="/css/student.css">  
 {% endblock %}
 
 {% block content %}
-Students
+    <div class="card table-container">
+
+        <a href="/students/create" class="newButton">New</a>
+        
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Students</th>
+                    <th>E-mail</th>
+                    <th>Class</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                 {% for student in students %}
+                <tr>
+                    <td><span style="background-image: url({{ student.avatar_url }})"></span>
+                    {{ student.name }}</td>
+                    
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.education_level }}</td>
+                    <td><a href="/students/{{ student.id }}">View</a></td>
+                </tr>              
+                {% endfor %}
+            </tbody>
+            
+        </table>        
+       
+    </div>
 {% endblock %}
