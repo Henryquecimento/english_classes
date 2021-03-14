@@ -1,16 +1,16 @@
 const Teacher = require("../models/Teacher");
-const { date, grade } = require("../../lib/utils");
-const db = require("../../config/db");
+const { age, date } = require("../../lib/utils");
 
 module.exports = {
   index(req, res) {
-    return res.render("./teachers/teacher");
+    Teacher.all((teachers) => {
+      return res.render("teachers/teacher", { teachers });
+    });
   },
   create(req, res) {
     return res.render("teachers/create");
   },
   post(req, res) {
-
     const keys = Object.keys(req.body);
 
     for (key of keys) {
@@ -19,36 +19,20 @@ module.exports = {
       }
     }
 
-    const query = `
-      INSERT INTO teachers (
-        avatar_url,
-        name,
-        birth,
-        education_level,
-        class_modality,
-        subjects,
-        created_at
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7)
-      RETURNING id
-    `
-    const values = [
-      req.body.avatar_url,
-      req.body.name,
-      date(req.body.birth).iso,
-      req.body.education_level,
-      req.body.class_modality,
-      req.body.subjects,
-      date(Date.now()).iso
-    ]
-
-    db.query(query, values, (err, results) => {
-      if (err) throw 'Database Error!';
-
-      return res.redirect(`/teachers/${results.rows[0].id}`);
-    })
+    Teacher.create(req.body, (teacher) => {
+      return res.redirect(`/teachers/${teacher.id}`);
+    });
   },
   show(req, res) {
-    return res.render("teachers/show");
+    Teacher.find(req.params.id, (teacher) => {
+      if (!teacher) return res.send("Teacher not found!");
+
+      teacher.birth = age(teacher.birth);
+      teacher.subjects = teacher.subjects.split(",");
+      teacher.created_at = date(teacher.created_at).format;
+
+      return res.render("teachers/show", { teacher });
+    });
   },
   edit(req, res) {
     return res.render("teachers/edit");
