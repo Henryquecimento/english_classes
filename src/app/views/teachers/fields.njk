@@ -32,10 +32,10 @@
     <div>Education level</div>
     <div>
         <select name = "education_level">
-            <option value="Graduation">Graduation</option>
-            <option value="Masters">Masters</option>
-            <option value="Doctor">Doctor</option>
-            <option value="Phd">Phd</option>
+            <option value="Graduation" {% if teacher.education_level == "Graduation"%} selected="selected" {% endif %}>Graduation</option>
+            <option value="Masters"  {% if teacher.education_level == "Masters"%} selected="selected" {% endif %}>Masters</option>
+            <option value="Doctor"  {% if teacher.education_level == "Doctor"%} selected="selected" {% endif %}>Doctor</option>
+            <option value="Phd"  {% if teacher.education_level == "Phd"%} selected="selected" {% endif %}>Phd</option>
         </select>
     </div>
 </div>
@@ -47,16 +47,16 @@
             <input
             type = "radio" 
             name = "class_modality"
-            value = 'P' {% if teacher.class_modality == 'P' %} 
-            {% endif %} checked>Presential
+            value = 'P' {% if teacher.class_modality == 'P' %}
+            checked {% endif %}>Presential
         </span>
 
         <span>
             <input 
             type="radio" 
             name = "class_modality" 
-            value = 'R' {% if teacher.class_modality == 'R' %}]
-            {% endif %}>Remote
+            value = 'R' {% if teacher.class_modality == 'R' %}
+            checked {% endif %} >Remote
             </span>
     </div>
 </div>

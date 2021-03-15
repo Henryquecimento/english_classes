@@ -35,10 +35,26 @@ module.exports = {
     });
   },
   edit(req, res) {
-    return res.render("teachers/edit");
+    Teacher.find(req.params.id, (teacher) => {
+      if (!teacher) return res.send("Teacher not found!");
+
+      teacher.birth = date(teacher.birth).iso;
+
+      return res.render("teachers/edit", { teacher });
+    });
   },
   put(req, res) {
-    return res.redirect(`/teachers`);
+    const keys = Object.keys(req.body);
+
+    for (key of keys) {
+      if (req.body[key] == 0) {
+        return res.send("Please, fill all the fields!");
+      }
+    }
+
+    Teacher.update(req.body, () => {
+      return res.redirect(`/teachers/${req.body.id}`);
+    });
   },
   delete(req, res) {
     return res.redirect("/teachers");
