@@ -33,7 +33,7 @@ module.exports = {
       data.name,
       date(data.birth).iso,
       data.education_level,
-      grade(data.class_modality),
+      data.class_modality,
       data.subjects,
       date(Date.now()).iso,
     ];
@@ -78,5 +78,17 @@ module.exports = {
 
       callback();
     });
+  },
+  delete(id, callback) {
+    db.query(
+      `
+      DELETE FROM teachers WHERE id = $1`,
+      [id],
+      (err, results) => {
+        if (err) throw `Database Error! ${err}`;
+
+        return callback();
+      }
+    );
   },
 };

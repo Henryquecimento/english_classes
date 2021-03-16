@@ -57,6 +57,8 @@ module.exports = {
     });
   },
   delete(req, res) {
-    return res.redirect("/teachers");
+    Teacher.delete(req.body.id, () => {
+      return res.redirect("/teachers");
+    });
   },
 };
