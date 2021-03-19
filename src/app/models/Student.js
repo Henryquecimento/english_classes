@@ -49,11 +49,19 @@ module.exports = {
     });
   },
   find(id, callback) {
-    db.query(` SELECT * FROM students WHERE id = $1`, [id], (err, results) => {
-      if (err) throw `Database Error! ${err}`;
+    db.query(
+      ` 
+      SELECT students.*, teachers.name AS teacher_name 
+      FROM students 
+      LEFT JOIN teachers ON (students.teacher_id = teachers.id)
+      WHERE students.id = $1`,
+      [id],
+      (err, results) => {
+        if (err) throw `Database Error! ${err}`;
 
-      callback(results.rows[0]);
-    });
+        callback(results.rows[0]);
+      }
+    );
   },
   update(data, callback) {
     const query = `
