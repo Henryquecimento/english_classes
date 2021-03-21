@@ -63,6 +63,24 @@ module.exports = {
       }
     );
   },
+  findBy(filter, callback) {
+    db.query(
+      `
+      SELECT students.*
+      FROM students
+      LEFT JOIN teachers ON (students.teacher_id = teachers.id)
+      WHERE students.name ILIKE '%${filter}%'
+      OR students.email ILIKE '%${filter}%'
+      GROUP BY students.id
+      ORDER BY students.name
+      `,
+      (err, results) => {
+        if (err) throw `Database Error!${err}`;
+
+        callback(results.rows);
+      }
+    );
+  },
   update(data, callback) {
     const query = `
     UPDATE students SET

@@ -3,13 +3,25 @@ const { grade, date } = require("../../lib/utils");
 
 module.exports = {
   index(req, res) {
-    Student.all((students) => {
-      for (student of students) {
-        student.education_level = grade(student.education_level);
-      }
+    const { filter } = req.query;
 
-      return res.render("students/student", { students });
-    });
+    if (filter) {
+      Student.findBy(filter, (students) => {
+        for (student of students) {
+          student.education_level = grade(student.education_level);
+        }
+
+        return res.render("students/student", { students, filter });
+      });
+    } else {
+      Student.all((students) => {
+        for (student of students) {
+          student.education_level = grade(student.education_level);
+        }
+
+        return res.render("students/student", { students });
+      });
+    }
   },
   create(req, res) {
     Student.teachersSelectOptions((options) => {
