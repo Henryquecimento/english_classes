@@ -3,9 +3,25 @@ const { age, date } = require("../../lib/utils");
 
 module.exports = {
   index(req, res) {
-    const { filter } = req.query;
+    let { filter, page, limit } = req.query;
 
-    if (filter) {
+    page = page || 1;
+    limit = limit || 2;
+    let offset = limit * (page - 1);
+
+    const params = {
+      filter,
+      page,
+      limit,
+      offset,
+      callback(teachers) {
+        return res.render("teachers/teacher", { teachers, filter });
+      },
+    };
+
+    Teacher.paginate(params);
+
+    /*  if (filter) {
       Teacher.findBy(filter, (teachers) => {
         return res.render("teachers/teacher", { teachers, filter });
       });
@@ -13,7 +29,7 @@ module.exports = {
       Teacher.all((teachers) => {
         return res.render("teachers/teacher", { teachers });
       });
-    }
+    } */
   },
   create(req, res) {
     return res.render("teachers/create");
