@@ -128,6 +128,7 @@ module.exports = {
 
     query = `${query}
     GROUP BY teachers.id
+    ORDER BY teachers.id
     LIMIT $1 OFFSET $2
     `;
 

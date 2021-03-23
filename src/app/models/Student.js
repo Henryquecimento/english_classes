@@ -130,4 +130,34 @@ module.exports = {
       callback(results.rows);
     });
   },
+  paginate(params) {
+    const { filter, limit, offset, callback } = params;
+
+    let query = `
+      SELECT students.* 
+      FROM students
+      LEFT JOIN teachers ON (teachers.id = students.teacher_id)
+    `;
+
+    if (filter) {
+      query = `
+        ${query}
+        WHERE students.name ILIKE '%${filter}%'
+        OR students.email ILIKE '%${filter}%'      
+      `;
+    }
+
+    query = `
+      ${query}
+      GROUP BY students.id
+      ORDER BY students.name
+      LIMIT $1 OFFSET $2
+    `;
+
+    db.query(query, [limit, offset], (err, results) => {
+      if (err) throw `Database Error! ${err}`;
+
+      callback(results.rows);
+    });
+  },
 };

@@ -3,9 +3,30 @@ const { grade, date } = require("../../lib/utils");
 
 module.exports = {
   index(req, res) {
-    const { filter } = req.query;
+    let { filter, page, limit } = req.query;
 
-    if (filter) {
+    page = page || 1;
+    limit = limit || 3;
+
+    let offset = limit * (page - 1);
+
+    const params = {
+      filter,
+      page,
+      limit,
+      offset,
+      callback(students) {
+        for (student of students) {
+          student.education_level = grade(student.education_level);
+        }
+
+        return res.render("students/student", { students, filter });
+      },
+    };
+
+    Student.paginate(params);
+
+    /* if (filter) {
       Student.findBy(filter, (students) => {
         for (student of students) {
           student.education_level = grade(student.education_level);
@@ -21,7 +42,7 @@ module.exports = {
 
         return res.render("students/student", { students });
       });
-    }
+    } */
   },
   create(req, res) {
     Student.teachersSelectOptions((options) => {
