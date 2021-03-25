@@ -35,5 +35,10 @@ function paginate(selectedPage, totalPage) {
     }
   }
 
-  /*   console.log(pages); */
+  return pages;
 }
+
+const pagination = document.querySelector(".pagination");
+const page = +pagination.dataset.page;
+const total = +pagination.dataset.total;
+const pages = paginate(page, total);
