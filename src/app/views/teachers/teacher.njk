@@ -2,27 +2,21 @@
 
 {% block head %}
     <title>Start X - English Teacher</title>
-    <link rel='stylesheet' href="/css/index.css">  
+    <link rel='stylesheet' href="/css/index.css">
 {% endblock %}
 
 {% block content %}
     <div class="card table-container">
 
         <div class="header">
-            <a href="/teachers/create" class="newButton">New</a>
+            <a href="/teachers/create" class="Button">New</a>
 
             <form action="/teachers" method="GET">
-                <input 
-                    type="text" 
-                    name="filter"
-                    placeholder="Name or subject"
-                    value="{{filter}}"
-                >
+                <input type="text" name="filter" placeholder="Name or subject" value="{{filter}}">
                 <button type="submit">Filter</button>
             </form>
-        
-        </div>
 
+        </div>
 
         <table width="100%">
             <thead>
@@ -35,31 +29,36 @@
             </thead>
 
             <tbody>
-                 {% for teacher in teachers %}
-                <tr>
-                    <td><span style="background-image: url({{ teacher.avatar_url }})"></span>
-                    {{ teacher.name }}</td>
-                    
-                    <td>
-                        {% for subject in teacher.subjects.split(',') %}
-                        <span>
-                            {{ subject }}
-                        </span>
-                        {% endfor %}
-                    </td>
-                    <td>{{ teacher.total_students }}</td>
-                    <td><a href="/teachers/{{ teacher.id }}">View</a></td>
-                </tr>              
+                {% for teacher in teachers %}
+                    <tr>
+                        <td>
+                            <span style="background-image: url({{ teacher.avatar_url }})"></span>
+                            {{ teacher.name }}</td>
+
+                        <td>
+                            {% for subject in teacher
+                                .subjects
+                                .split(',') %}
+                                <span>
+                                    {{ subject }}
+                                </span>
+                            {% endfor %}
+                        </td>
+                        <td>{{ teacher.total_students }}</td>
+                        <td>
+                            <a class="Button" href="/teachers/{{ teacher.id }}">View</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
-            
-        </table>  
 
-        <div class="pagination">
-            data-page={{pagination.page}}
-            data-total={{pagination.total}}
-        </div>
+        </table>
 
+        <div class="pagination" 
+        data-page={{pagination.page}} 
+        data-total={{pagination.total}}
+        data-filter={{filter}} 
+        ></div>
 
     </div>
 {% endblock %}

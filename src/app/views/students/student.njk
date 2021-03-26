@@ -2,27 +2,22 @@
 
 {% block head %}
     <title>Start X - English Student</title>
-    <link rel='stylesheet' href="/css/index.css">  
+    <link rel='stylesheet' href="/css/index.css">
 {% endblock %}
 
 {% block content %}
     <div class="card table-container">
 
-          <div class="header">
-            <a href="/students/create" class="newButton">New</a>
+        <div class="header">
+            <a href="/students/create" class="Button">New</a>
 
             <form action="/students" method="GET">
-                <input 
-                    type="text" 
-                    name="filter"
-                    placeholder="Name or email"
-                    value="{{filter}}"
-                >
+                <input type="text" name="filter" placeholder="Name or email" value="{{filter}}">
                 <button type="submit">Filter</button>
             </form>
-        
+
         </div>
-        
+
         <table width="100%">
             <thead>
                 <tr>
@@ -35,18 +30,21 @@
 
             <tbody>
                 {% for student in students %}
-                <tr>
-                    <td><span style="background-image: url({{ student.avatar_url }})"></span>
-                    {{ student.name }}</td>
-                    
-                    <td>{{ student.email }}</td>
-                    <td>{{ student.education_level }}</td>
-                    <td><a href="/students/{{ student.id }}">View</a></td>
-                </tr>              
+                    <tr>
+                        <td>
+                            <span style="background-image: url({{ student.avatar_url }})"></span>
+                            {{ student.name }}</td>
+
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.education_level }}</td>
+                        <td>
+                            <a class="Button" href="/students/{{ student.id }}">View</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
-            
-        </table>        
-       
+
+        </table>
+
     </div>
 {% endblock %}

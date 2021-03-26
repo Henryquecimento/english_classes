@@ -39,6 +39,24 @@ function paginate(selectedPage, totalPage) {
 }
 
 const pagination = document.querySelector(".pagination");
+const filter = pagination.dataset.filter;
 const page = +pagination.dataset.page;
 const total = +pagination.dataset.total;
 const pages = paginate(page, total);
+
+let elements = "";
+
+for (let page of pages) {
+  if (String(page).includes("...")) {
+    elements += `<span>${page}</span>`;
+  } else {
+    /* To prevent that when I refresh the pege, the filter from getting lost */
+    if (filter) {
+      elements += `<a href="?page=${page}&filter=${filter}">${page}</a>`;
+    } else {
+      elements += `<a href="?page=${page}">${page}</a>`;
+    }
+  }
+}
+
+pagination.innerHTML = elements;
