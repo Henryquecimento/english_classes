@@ -40,8 +40,12 @@ function paginate(selectedPage, totalPage) {
 
 const pagination = document.querySelector(".pagination");
 const filter = pagination.dataset.filter;
+const page = Number(pagination.dataset.page);
+const total = Number(pagination.dataset.total);
+/* 
 const page = +pagination.dataset.page;
-const total = +pagination.dataset.total;
+const total = +pagination.dataset.total; 
+*/
 const pages = paginate(page, total);
 
 let elements = "";

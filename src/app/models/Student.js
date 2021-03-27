@@ -133,24 +133,35 @@ module.exports = {
   paginate(params) {
     const { filter, limit, offset, callback } = params;
 
-    let query = `
-      SELECT students.* 
-      FROM students
-      LEFT JOIN teachers ON (teachers.id = students.teacher_id)
-    `;
+
+    let query = '',
+      filterQuery = '',
+      totalQuery = `(
+          SELECT count(*) FROM students 
+        ) AS total`;
+
 
     if (filter) {
-      query = `
-        ${query}
+
+      filterQuery = `
         WHERE students.name ILIKE '%${filter}%'
         OR students.email ILIKE '%${filter}%'      
+      `;
+
+      totalQuery = `(
+          SELECT count(*) FROM students 
+          ${filterQuery}
+        ) AS total
       `;
     }
 
     query = `
-      ${query}
+      SELECT students.*, ${totalQuery} , count(students) AS total_students
+      FROM students
+      LEFT JOIN teachers ON (teachers.id = students.teacher_id)
+      ${filterQuery}
       GROUP BY students.id
-      ORDER BY students.name
+      ORDER BY total_students
       LIMIT $1 OFFSET $2
     `;
 

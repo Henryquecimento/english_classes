@@ -6,7 +6,7 @@ module.exports = {
     let { filter, page, limit } = req.query;
 
     page = page || 1;
-    limit = limit || 3;
+    limit = limit || 4;
 
     let offset = limit * (page - 1);
 
@@ -16,33 +16,22 @@ module.exports = {
       limit,
       offset,
       callback(students) {
+
+        const pagination = {
+          total: Math.ceil(students[0].total / limit),
+          page,
+        }
+
         for (student of students) {
           student.education_level = grade(student.education_level);
         }
 
-        return res.render("students/student", { students, filter });
+        return res.render("students/student", { students, filter, pagination });
       },
     };
 
     Student.paginate(params);
 
-    /* if (filter) {
-      Student.findBy(filter, (students) => {
-        for (student of students) {
-          student.education_level = grade(student.education_level);
-        }
-
-        return res.render("students/student", { students, filter });
-      });
-    } else {
-      Student.all((students) => {
-        for (student of students) {
-          student.education_level = grade(student.education_level);
-        }
-
-        return res.render("students/student", { students });
-      });
-    } */
   },
   create(req, res) {
     Student.teachersSelectOptions((options) => {
