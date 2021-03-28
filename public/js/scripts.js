@@ -38,29 +38,38 @@ function paginate(selectedPage, totalPage) {
   return pages;
 }
 
-const pagination = document.querySelector(".pagination");
-const filter = pagination.dataset.filter;
-const page = Number(pagination.dataset.page);
-const total = Number(pagination.dataset.total);
-/* 
-const page = +pagination.dataset.page;
-const total = +pagination.dataset.total; 
-*/
-const pages = paginate(page, total);
+function createPagination(pagination) {
+  const filter = pagination.dataset.filter;
+  const page = Number(pagination.dataset.page);
+  const total = Number(pagination.dataset.total);
+  /* 
+  const page = +pagination.dataset.page;
+  const total = +pagination.dataset.total; 
+  */
+  const pages = paginate(page, total);
 
-let elements = "";
+  let elements = "";
 
-for (let page of pages) {
-  if (String(page).includes("...")) {
-    elements += `<span>${page}</span>`;
-  } else {
-    /* To prevent that when I refresh the pege, the filter from getting lost */
-    if (filter) {
-      elements += `<a href="?page=${page}&filter=${filter}">${page}</a>`;
+  for (let page of pages) {
+    if (String(page).includes("...")) {
+      elements += `<span>${page}</span>`;
     } else {
-      elements += `<a href="?page=${page}">${page}</a>`;
+      /* To prevent that when I refresh the pege, the filter from getting lost */
+      if (filter) {
+        elements += `<a href="?page=${page}&filter=${filter}">${page}</a>`;
+      } else {
+        elements += `<a href="?page=${page}">${page}</a>`;
+      }
     }
   }
+
+  pagination.innerHTML = elements;
+
 }
 
-pagination.innerHTML = elements;
+const pagination = document.querySelector(".pagination");
+
+if (pagination) {
+  createPagination(pagination);
+}
+
